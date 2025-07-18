@@ -1,63 +1,43 @@
 import 'package:flutter/material.dart';
 
 class BottomNavbar extends StatelessWidget {
-  final int currentIndex;
   final Function(int)? onTap;
-  const BottomNavbar({
-    super.key,
-    required this.currentIndex,
-    required this.onTap,
-  });
+  const BottomNavbar({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: Color.fromARGB(255, 70, 70, 70),
       height: 120,
       child: BottomNavigationBar(
-        currentIndex: currentIndex,
+        elevation: 0,
         onTap: onTap,
+        type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromARGB(69, 158, 158, 158),
+        backgroundColor: const Color.fromARGB(96, 24, 24, 24),
         selectedItemColor: Colors.white,
-        selectedLabelStyle: TextStyle(color: Colors.white),
-        unselectedItemColor: const Color.fromARGB(255, 158, 158, 158),
+        unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 32,
-            ),
+            icon: Icon(Icons.home, size: 32),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.people,
-              size: 32,
-            ),
+            icon: Icon(Icons.people, size: 32),
             label: "Social",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              size: 32,
-            ),
-            label: "Search",
+            icon: Icon(Icons.search, size: 32),
+            label: "Serach",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.library_books_outlined,
-              size: 32,
-            ),
-            label: "Library",
+            icon: Icon(Icons.library_books_outlined, size: 32),
+            label: "Social",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.games_outlined,
-              size: 32,
-            ),
-            label: "Games",
+            icon: Icon(Icons.gamepad_outlined, size: 32),
+            label: "Social",
           ),
         ],
       ),

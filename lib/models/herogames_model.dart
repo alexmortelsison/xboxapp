@@ -1,31 +1,31 @@
-class HomeModel {
+class HeroGamesModel {
   final String title;
   final String description;
   final String imageUrl;
 
-  HomeModel({
+  HeroGamesModel({
     required this.title,
     required this.description,
     required this.imageUrl,
   });
 
-  static final List<HomeModel> _games = [
-    HomeModel(
+  static final List<HeroGamesModel> _heroGamesList = [
+    HeroGamesModel(
       title: "Join GamePass",
       description: "",
       imageUrl: "lib/assets/gamepass.jpg",
     ),
-    HomeModel(
+    HeroGamesModel(
       title: "Rematch",
-      description: "Available Now",
+      description: "Pre Order Now",
       imageUrl: "lib/assets/rematch.png",
     ),
-    HomeModel(
-      title: "Get College Football 26",
-      description: "And bring glory home",
+    HeroGamesModel(
+      title: "College Football",
+      description: "Available Now",
       imageUrl: "lib/assets/collegefoot.webp",
     ),
   ];
 
-  static List<HomeModel> getGames() => _games;
+  static List<HeroGamesModel> getHeroGames() => _heroGamesList;
 }
