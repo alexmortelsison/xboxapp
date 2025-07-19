@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:xboxapp/components/hero_card.dart';
 import 'package:xboxapp/components/jump_back_in.dart';
 import 'package:xboxapp/components/official_posts.dart';
+import 'package:xboxapp/components/popular.dart';
 import 'package:xboxapp/components/recently_added.dart';
 import 'package:xboxapp/components/top_appbar.dart';
 import 'package:xboxapp/models/herogames_model.dart';
@@ -44,6 +45,7 @@ class HomeScreen extends StatelessWidget {
                   JumpBackIn(),
                   SizedBox(height: 24),
                   RecentlyAdded(),
+                  Popular(),
                 ],
               ),
             ),
