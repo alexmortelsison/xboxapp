@@ -17,14 +17,11 @@ class SearchScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Search",
-                    style: TextStyle(color: Colors.white, fontSize: 28),
-                  ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 16),
+                    padding: const EdgeInsets.only(right: 16, top: 16),
                     child: SearchBar(
-                      hintText: "Search",
+                      hintText: "Search for people, games, and more",
+                      leading: Icon(Icons.search),
                     ),
                   ),
                 ],
