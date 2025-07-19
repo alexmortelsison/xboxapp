@@ -24,6 +24,11 @@ class SearchScreen extends StatelessWidget {
                       leading: Icon(Icons.search),
                     ),
                   ),
+                  SizedBox(height: 24),
+                  Image.asset(
+                    "lib/assets/searchillus.png",
+                    height: 500,
+                  ),
                 ],
               ),
             ),
