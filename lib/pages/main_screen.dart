@@ -36,6 +36,7 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.grey.shade900,
       bottomNavigationBar: BottomNavbar(
         onTap: onPageChange,
+        currentIndex: _selectedIndex,
       ),
       body: _pages[_selectedIndex],
     );

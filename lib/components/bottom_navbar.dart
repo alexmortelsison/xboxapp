@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavbar extends StatelessWidget {
   final Function(int)? onTap;
-  const BottomNavbar({super.key, required this.onTap});
+  final int currentIndex;
+  const BottomNavbar({
+    super.key,
+    required this.onTap,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 120,
       child: BottomNavigationBar(
+        currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.grey.shade800,
         showUnselectedLabels: false,
         showSelectedLabels: false,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.grey.shade700,
         onTap: onTap,
         items: [
           BottomNavigationBarItem(
@@ -35,7 +42,7 @@ class BottomNavbar extends StatelessWidget {
             label: "Library",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.games_outlined),
+            icon: FaIcon(FontAwesomeIcons.xbox),
             label: "Gamepass",
           ),
         ],
