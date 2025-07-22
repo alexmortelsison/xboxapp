@@ -1,0 +1,31 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "xbox-app-clone",
+          "appId": "1:702419579458:android:ad47bf50fef21474d1b3db",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "xbox-app-clone",
+          "configurations": {
+            "android": "1:702419579458:android:ad47bf50fef21474d1b3db",
+            "ios": "1:702419579458:ios:12c44f244a6b66e6d1b3db"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "asia-east1",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

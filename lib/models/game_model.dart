@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class GameModel {
   final String title;
   final String imageUrl;
