@@ -81,11 +81,7 @@ class GameModel {
     ),
   ];
 
-  static List<GameModel> getAllGames({limit = 4}) {
-    final allGames = _allGames;
-    allGames.shuffle();
-    return allGames.take(limit).toList();
-  }
+  static List<GameModel> getAllGames() => _allGames;
 
   static List<GameModel> getPopularGames({int limit = 5}) {
     final popularGames = _allGames.where((game) => game.isPopular).toList();

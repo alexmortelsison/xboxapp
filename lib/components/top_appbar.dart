@@ -30,7 +30,8 @@ class TopAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.grey.shade800,
+      pinned: true,
+      backgroundColor: const Color.fromARGB(230, 66, 66, 66),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
