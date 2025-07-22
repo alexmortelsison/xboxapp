@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xboxapp/components/bottom_navbar.dart';
-import 'package:xboxapp/pages/games_screen.dart';
+import 'package:xboxapp/pages/gamepass_screen.dart';
 import 'package:xboxapp/pages/home_screen.dart';
 import 'package:xboxapp/pages/library_screen.dart';
 import 'package:xboxapp/pages/search_screen.dart';
@@ -14,17 +14,17 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
-
   final List<Widget> _pages = [
     HomeScreen(),
     SocialScreen(),
     SearchScreen(),
     LibraryScreen(),
-    GamesScreen(),
+    GamepassScreen(),
   ];
 
-  void selectPage(int index) {
+  int _selectedIndex = 0;
+
+  void onPageChange(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -33,8 +33,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       bottomNavigationBar: BottomNavbar(
-        onTap: selectPage,
+        onTap: onPageChange,
       ),
       body: _pages[_selectedIndex],
     );

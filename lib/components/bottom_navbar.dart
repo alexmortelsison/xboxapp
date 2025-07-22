@@ -6,38 +6,37 @@ class BottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromARGB(255, 70, 70, 70),
+    return SizedBox(
       height: 120,
       child: BottomNavigationBar(
-        elevation: 0,
-        onTap: onTap,
         type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
+        backgroundColor: Colors.grey.shade800,
         showUnselectedLabels: false,
-        backgroundColor: const Color.fromARGB(96, 24, 24, 24),
+        showSelectedLabels: false,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
+        onTap: onTap,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 32),
+            icon: Icon(Icons.home),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people, size: 32),
+            icon: Icon(Icons.people_alt_outlined),
             label: "Social",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 32),
-            label: "Serach",
+            icon: Icon(Icons.search_outlined),
+            label: "Search",
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_outlined),
+            label: "Library",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_books_outlined, size: 32),
-            label: "Social",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.gamepad_outlined, size: 32),
-            label: "Social",
+            icon: Icon(Icons.games_outlined),
+            label: "Gamepass",
           ),
         ],
       ),

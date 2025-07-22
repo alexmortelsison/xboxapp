@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:xboxapp/components/top_appbar.dart';
 
 class SocialScreen extends StatelessWidget {
@@ -7,19 +8,14 @@ class SocialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade800,
+      backgroundColor: Colors.grey.shade900,
       body: CustomScrollView(
         slivers: [
-          TopAppbar(),
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Image.asset(
-                  "lib/assets/friends.png",
-                  height: 350,
-                ),
-              ],
-            ),
+          TopAppbar(
+            imageUrl: "lib/assets/avatar.png",
+            pageName: "Social",
+            icon1: FontAwesomeIcons.headphones,
+            icon2: FontAwesomeIcons.penToSquare,
           ),
         ],
       ),
