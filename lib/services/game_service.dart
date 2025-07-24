@@ -17,12 +17,36 @@ class GameService {
         .collection("games");
   }
 
-  Future<void> _addGame(GameModel game) async {
+  Future<void> addGame(GameModel game) async {
     try {
       await _getGamesCollection().add(game.toMap());
       print("Game added to Firestore: ${game.title}");
     } catch (e) {
-      print("Error adding game to Firestore: $e");
+      print("Error adding game:$e");
+    }
+  }
+
+  Stream<List<GameModel>> getGamesStream() {
+    return _getGamesCollection().snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => GameModel.fromFirestore(doc)).toList();
+    });
+  }
+
+  Future<void> updateGame(GameModel game) async {
+    try {
+      await _getGamesCollection().doc(game.id).update(game.toMap());
+      print("Game updated in Firestore: ${game.title} (ID:${game.id})");
+    } catch (e) {
+      print("Error updating game in Firestore:$e");
+    }
+  }
+
+  Future<void> deleteGame(String gameId) async {
+    try {
+      await _getGamesCollection().doc(gameId).delete();
+      print("Game deleted in Firestore: $gameId");
+    } catch (e) {
+      print("Error deleting game: $gameId");
     }
   }
 }

@@ -19,7 +19,6 @@ class GameModel {
 
   factory GameModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
-
     return GameModel(
       id: doc.id,
       title: data["title"],
