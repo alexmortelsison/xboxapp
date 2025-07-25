@@ -11,89 +11,117 @@ class LibraryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GameService gameService = GameService();
+    final Stream<List<GameModel>> gamesStream = gameService.getGamesStream();
+
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       body: CustomScrollView(
         slivers: [
+          // Use SliverAppBar directly or modify TopAppbar to return SliverAppBar
           TopAppbar(
             imageUrl: "lib/assets/avatar.png",
             pageName: "My Library",
+            icon1: Icons.search,
+            icon2: FontAwesomeIcons.bell,
           ),
           StreamBuilder<List<GameModel>>(
             stream: gameService.getGamesStream(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator.adaptive());
+                return const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator.adaptive()),
+                );
               }
+
               if (snapshot.hasError) {
                 return SliverFillRemaining(
                   child: Center(
-                    child: Text("Error:${snapshot.error}"),
+                    child: Text(
+                      "Error: ${snapshot.error}",
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
                 );
               }
+
               if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return SliverFillRemaining(
+                return const SliverFillRemaining(
                   child: Center(
-                    child: Text("No games in your library"),
+                    child: Text(
+                      "No games in your library",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 );
               }
-              final List<GameModel> games = snapshot.data!;
-              final int totalGames = games.length;
+
+              final games = snapshot.data!;
+              final totalGames = games.length;
 
               return SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "$totalGames games",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
+                delegate: SliverChildListDelegate([
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "$totalGames games",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
                           ),
-                          Row(
-                            children: [
-                              const Icon(
-                                FontAwesomeIcons.bars,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              const SizedBox(width: 8),
-                              const Icon(
-                                FontAwesomeIcons.bell,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    SliverPadding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      sliver: SliverGrid(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8.0,
-                              mainAxisSpacing: 8.0,
-                            ),
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            final GameModel game = games[index];
-                            return GameCard(imageUrl: game.imageUrl);
-                          },
-                          childCount: games.length,
                         ),
-                      ),
+                        const Row(
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.bars,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            SizedBox(width: 8),
+                            Icon(
+                              FontAwesomeIcons.bell,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
+                ]),
+              );
+            },
+          ),
+          StreamBuilder<List<GameModel>>(
+            stream: gameService.getGamesStream(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const SliverToBoxAdapter(child: SizedBox.shrink());
+              }
+
+              final games = snapshot.data!;
+
+              return SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                sliver: SliverGrid(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final game = games[index];
+                      return GameCard(
+                        imageUrl: game.imageUrl,
+                        title: game.title,
+                      );
+                    },
+                    childCount: games.length,
+                  ),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 1,
+                  ),
                 ),
               );
             },

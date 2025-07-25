@@ -9,12 +9,7 @@ class GameService {
       "APP_ID",
       defaultValue: "default-app-id",
     );
-    return _firestore
-        .collection("artifacts")
-        .doc(appId)
-        .collection("public")
-        .doc("data")
-        .collection("games");
+    return _firestore.collection("games");
   }
 
   Future<void> addGame(GameModel game) async {

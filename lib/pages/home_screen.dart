@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: SizedBox(
-                      height: 350,
+                      height: 300,
                       child: StreamBuilder<List<GameModel>>(
                         // StreamBuilder for all games
                         stream: gameService.getGamesStream(),
